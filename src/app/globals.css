@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sidebar-width: 268px;
+  --coral:        #E8735A;
+  --coral-light:  #F08070;
+  --teal:         #4A9E8E;
+  --teal-bg:      #4A9B8E;
+  --white:        #ffffff;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Override Tailwind's font-sans with Montserrat */
+  body {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    @apply bg-slate-50 text-slate-900;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    @apply font-bold;
+  }
+  
+  input, textarea, select, button {
+    font-family: 'Montserrat', system-ui, sans-serif;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar       { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(74, 155, 142, 0.3);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(74, 155, 142, 0.55);
+  }
+}
+
+@layer components {
+  /* ── Cards ─────────────────────────────────────────── */
+  .card {
+    @apply bg-white rounded-2xl border border-teal-100/60 shadow-card;
+  }
+
+  .card-hover {
+    @apply hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-200 cursor-pointer;
+  }
+
+  /* ── Buttons ────────────────────────────────────────── */
+  .btn-primary {
+    @apply bg-brand-500 hover:bg-brand-600 active:bg-brand-700
+           text-white font-semibold px-4 py-2.5 rounded-xl
+           shadow-coral hover:shadow-none
+           transition-all duration-150 text-sm tracking-wide;
+  }
+
+  .btn-secondary {
+    @apply bg-white hover:bg-teal-50 text-teal-500 font-semibold
+           px-4 py-2.5 rounded-xl border border-teal-200
+           transition-all duration-150 text-sm tracking-wide;
+  }
+
+  .btn-ghost {
+    @apply hover:bg-teal-50 text-slate-600 hover:text-teal-600 font-medium
+           px-3 py-2 rounded-xl transition-all duration-150 text-sm;
+  }
+
+  .btn-danger {
+    @apply bg-red-500 hover:bg-red-600 text-white font-semibold
+           px-4 py-2.5 rounded-xl transition-all duration-150 text-sm;
+  }
+
+  /* ── Inputs ─────────────────────────────────────────── */
+  .input-field {
+    @apply w-full px-3.5 py-2.5 border border-slate-200 rounded-xl
+           text-sm text-slate-900 placeholder:text-slate-400 font-normal
+           focus:outline-none focus:ring-2 focus:ring-brand-400/50 focus:border-brand-400
+           transition-all duration-150 bg-white;
+  }
+
+  .label {
+    @apply text-xs font-semibold text-slate-600 mb-1.5 block uppercase tracking-wider;
+  }
+
+  /* ── Badges ─────────────────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border;
+  }
+
+  .badge-coral {
+    @apply bg-brand-50 text-brand-600 border-brand-200;
+  }
+
+  .badge-teal {
+    @apply bg-teal-50 text-teal-600 border-teal-200;
+  }
+
+  .badge-green {
+    @apply bg-emerald-50 text-emerald-700 border-emerald-200;
+  }
+
+  .badge-amber {
+    @apply bg-amber-50 text-amber-700 border-amber-200;
+  }
+
+  /* ── Page structure ─────────────────────────────────── */
+  .page-header {
+    @apply mb-6;
+  }
+
+  .page-title {
+    @apply text-2xl font-bold text-slate-900 tracking-tight;
+  }
+
+  .page-subtitle {
+    @apply text-sm text-slate-500 mt-1 font-normal;
+  }
+
+  .section-title {
+    @apply text-base font-bold text-slate-800 tracking-tight;
+  }
+
+  /* ── Sidebar nav ─────────────────────────────────────── */
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl
+           text-sm font-semibold tracking-wide
+           transition-all duration-150 cursor-pointer;
+  }
+
+  .nav-item-active {
+    @apply bg-white/20 text-white shadow-sm backdrop-blur-sm;
+  }
+
+  .nav-item-inactive {
+    @apply text-white/70 hover:bg-white/10 hover:text-white;
+  }
+
+  /* ── Stat card ───────────────────────────────────────── */
+  .stat-card {
+    @apply card p-5 card-hover;
+  }
+
+  .pill-indicator {
+    @apply w-3 h-3 rounded-full inline-block;
+  }
+
+  /* ── Chat bubbles ────────────────────────────────────── */
+  .chat-bubble-user {
+    @apply bg-brand-500 text-white rounded-2xl rounded-tr-sm px-4 py-3 text-sm font-normal shadow-coral;
+  }
+
+  .chat-bubble-assistant {
+    @apply bg-white border border-teal-100 text-slate-700 rounded-2xl rounded-tl-sm px-4 py-3 text-sm font-normal shadow-card;
+  }
+
+  /* ── Progress bar ────────────────────────────────────── */
+  .progress-bar {
+    transition: width 0.8s ease-out;
+  }
+
+  /* ── Modal ───────────────────────────────────────────── */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4;
+  }
+
+  .modal-content {
+    @apply bg-white rounded-2xl shadow-modal w-full max-h-[90vh] overflow-y-auto animate-fade-in;
+  }
+
+  /* ── TopNav title ────────────────────────────────────── */
+  .topnav-title {
+    @apply text-xl font-bold text-slate-900 tracking-tight;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in  { animation: fadeIn  0.35s ease-out; }
+  .animate-slide-in { animation: slideIn 0.35s ease-out; }
+  .animate-slide-up { animation: slideUp 0.35s ease-out; }
+
+  .stagger-1 { animation-delay: 60ms; }
+  .stagger-2 { animation-delay: 120ms; }
+  .stagger-3 { animation-delay: 180ms; }
+  .stagger-4 { animation-delay: 240ms; }
+  .stagger-5 { animation-delay: 300ms; }
+
+  /* Coral text gradient */
+  .text-coral-gradient {
+    background: linear-gradient(135deg, #E8735A, #F08070);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glassmorphism helper */
+  .glass {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
